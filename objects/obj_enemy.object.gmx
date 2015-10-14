@@ -172,8 +172,8 @@ if !place_free(x+vspeed,y+vspeed)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(other) instance_destroy();
-hp -=25;
+            <string>hp -=25;
+with(other) instance_destroy();
 </string>
           </argument>
         </arguments>
