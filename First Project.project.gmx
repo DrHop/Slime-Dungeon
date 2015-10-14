@@ -14,6 +14,9 @@
       <sprite>sprites\spr_enemyLeft</sprite>
       <sprite>sprites\spr_playerLeft</sprite>
       <sprite>sprites\spr_playerRight</sprite>
+      <sprite>sprites\spr_playerIdleRight</sprite>
+      <sprite>sprites\spr_playerIdleLeft</sprite>
+      <sprite>sprites\spr_enemyDeath</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_healthbar_border</sprite>
@@ -35,10 +38,12 @@
     <objects name="Controllers">
       <object>objects\cont_main</object>
       <object>objects\cont_enemySpawn</object>
+      <object>objects\Cont_shake</object>
     </objects>
     <object>objects\obj_enemy</object>
     <object>objects\obj_wall</object>
     <object>objects\object6</object>
+    <object>objects\obj_enemyDeath</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_room1</room>

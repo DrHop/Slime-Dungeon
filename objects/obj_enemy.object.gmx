@@ -28,7 +28,7 @@
             <string>state = scr_enemy_static;
 image_speed = .2
 hp = 100;
-regen = 1
+regen = 5
 alarm[1] = regen
 enemySpeed = 2
 aggroRange = 240;
@@ -108,9 +108,10 @@ script_execute(state);
 //Enemy Death
 if hp &lt;= 0
 {
-    instance_destroy();
+    instance_change(obj_enemyDeath);
     global.score +=5;
 }
+
 //Collisions
 if hspeed!=0
 if !place_free(x+hspeed,y)

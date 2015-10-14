@@ -79,10 +79,18 @@ hp = 100;
 hspeed = walkingSpeed * (keyboard_check(ord('D')) - keyboard_check(ord('A')));
 vspeed = walkingSpeed * (keyboard_check(ord('S')) - keyboard_check(ord('W')));
 //Player Facing Direction
-if ((point_direction(x,y,mouse_x,mouse_y)  &lt; 90) or (point_direction(x,y,mouse_x,mouse_y) &gt; 270))
-{sprite_index = spr_playerRight}
+//if ((point_direction(x,y,mouse_x,mouse_y)  &lt; 90) or (point_direction(x,y,mouse_x,mouse_y) &gt; 270))
+if (mouse_x &gt; x)
+sprite_index = spr_playerRight
 else
-{sprite_index = spr_playerLeft}
+sprite_index = spr_playerLeft
+if !(keyboard_check(ord('D')) or  keyboard_check(ord('W')) or keyboard_check(ord('A')) or keyboard_check(ord('S')))
+{
+if (mouse_x &gt; x)
+sprite_index = spr_playerIdleRight
+else
+sprite_index = spr_playerIdleLeft
+}
 //Collisions
 if hspeed!=0
 if !place_free(x+hspeed,y)
@@ -132,7 +140,6 @@ bullet_id.direction = point_direction(x,y,mouse_x,mouse_y)  + (irandom(10) - 5) 
 bullet_id.speed = 5
 can_shoot = 0
 alarm[0] = shoot_delay
-show_debug_message("Shoot")
 }
 </string>
           </argument>
