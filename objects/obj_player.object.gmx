@@ -100,7 +100,6 @@ if !place_free(x+vspeed,y+vspeed)
     vspeed=0
 }
 //Player Death
-image_alpha = hp/100;
 if hp &lt;= 0
 game_end();
 </string>

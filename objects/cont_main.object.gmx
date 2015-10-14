@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -48,9 +48,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_black);
-draw_text(view_xview[0]+10, view_yview[0]+10, "Score: "+string(global.score));
-draw_text(view_xview[0]+10, view_yview[0]+30, "Health: "+string(obj_player.hp));
+            <string>draw_sprite(spr_healthbar_bg,1,view_xview[0]+15, view_yview[0]+15);
+draw_sprite_ext(spr_healthbar_inner,1,view_xview[0]+15, view_yview[0]+15, obj_player.hp/100,1,0,c_white,1);
+draw_sprite(spr_healthbar_border,1,view_xview[0]+15, view_yview[0]+15);
+draw_set_color(c_black);
+draw_text(view_xview[0]+15, view_yview[0]+77, "Score: "+string(global.score));
 </string>
           </argument>
         </arguments>
