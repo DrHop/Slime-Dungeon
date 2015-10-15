@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>global.score = 0;
+
 </string>
           </argument>
         </arguments>
@@ -53,7 +54,30 @@ draw_sprite_ext(spr_healthbar_inner,1,view_xview[0]+15, view_yview[0]+15, obj_pl
 draw_sprite(spr_healthbar_border,1,view_xview[0]+15, view_yview[0]+15);
 draw_set_color(c_black);
 draw_text(view_xview[0]+15, view_yview[0]+77, "Score: "+string(global.score));
+draw_text(view_xview[0]+15, view_yview[0]+140,"Image Speed: " + string(global.imagespeed))
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>

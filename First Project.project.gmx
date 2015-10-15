@@ -17,12 +17,14 @@
       <sprite>sprites\spr_playerIdleRight</sprite>
       <sprite>sprites\spr_playerIdleLeft</sprite>
       <sprite>sprites\spr_enemyDeath</sprite>
+      <sprite>sprites\spr_PlayerRoll</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_healthbar_border</sprite>
       <sprite>sprites\spr_healthbar_bg</sprite>
       <sprite>sprites\spr_healthbar_inner</sprite>
     </sprites>
+    <sprite>sprites\spr_boom</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bg_background1</background>
@@ -39,11 +41,13 @@
       <object>objects\cont_main</object>
       <object>objects\cont_enemySpawn</object>
       <object>objects\Cont_shake</object>
+      <object>objects\cont_pause</object>
     </objects>
     <object>objects\obj_enemy</object>
     <object>objects\obj_wall</object>
     <object>objects\object6</object>
     <object>objects\obj_enemyDeath</object>
+    <object>objects\obj_boom</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_room1</room>
