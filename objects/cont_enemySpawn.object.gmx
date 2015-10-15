@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>spawn_rate = random_range(60,180);
+
 alarm[1] = spawn_rate;
 </string>
           </argument>
@@ -57,7 +58,7 @@ spawn_id.y = random(room_height);
 
 with (spawn_id)
 {
-collision = place_meeting(x,y,obj_wall)
+collision = (place_meeting(x,y,obj_wall) or place_meeting(x,y,obj_enemy))
 }
 }
 until spawn_id.collision = 0

@@ -30,6 +30,36 @@ can_shoot = true
 shoot_delay = 3
 walkingSpeed = 3;
 hp = 100;
+roll_time = .4 * room_speed //time to roll...err, the amount of time you can roll for
+roll = false //are you rolling? Nope!
+globalvar imagespeed;
+imagespeed = .2
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>hspeed = walkingSpeed * (keyboard_check(ord('D')) - keyboard_check(ord('A')));
+vspeed = walkingSpeed * (keyboard_check(ord('S')) - keyboard_check(ord('W')));
+roll=false
+image_speed = .2
 </string>
           </argument>
         </arguments>
@@ -75,9 +105,18 @@ hp = 100;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//Player Movement
+            <string>//depth =-y
+//Player Movement
+if roll
+{
+if(choose(0,1) = 1)
+effect_create_below(ef_smoke,x,y,choose(0,1),c_white)
+}
+if !roll
+{
 hspeed = walkingSpeed * (keyboard_check(ord('D')) - keyboard_check(ord('A')));
 vspeed = walkingSpeed * (keyboard_check(ord('S')) - keyboard_check(ord('W')));
+
 //Player Facing Direction
 //if ((point_direction(x,y,mouse_x,mouse_y)  &lt; 90) or (point_direction(x,y,mouse_x,mouse_y) &gt; 270))
 if (mouse_x &gt; x)
@@ -90,6 +129,7 @@ if (mouse_x &gt; x)
 sprite_index = spr_playerIdleRight
 else
 sprite_index = spr_playerIdleLeft
+}
 }
 //Collisions
 if hspeed!=0
@@ -110,6 +150,98 @@ if !place_free(x+vspeed,y+vspeed)
 //Player Death
 if hp &lt;= 0
 game_end();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_enemy">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="61">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>imagespeed-=.1
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="60">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>imagespeed+=.1
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="51">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_create(x,y,obj_boom)
+
 </string>
           </argument>
         </arguments>
@@ -142,6 +274,82 @@ can_shoot = 0
 alarm[0] = shoot_delay
 }
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (roll)
+image_index = 4
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>hspeed = walkingSpeed * 2 * (keyboard_check(ord('D')) - keyboard_check(ord('A')));
+vspeed = walkingSpeed * 2 * (keyboard_check(ord('S')) - keyboard_check(ord('W')));
+alarm[1] = roll_time
+show_debug_message("Roll!")
+roll=true
+image_speed = imagespeed
+sprite_index = spr_PlayerRoll
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
