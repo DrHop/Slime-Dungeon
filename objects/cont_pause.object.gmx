@@ -25,23 +25,66 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.pause = false
-surf = surface_create(view_wview[0], view_hview[0]);
+            <string>    global.pause = false //this means pause is currently off
+/// Declare variables for pause event
 
-surface_set_target(surf);
-draw_clear_alpha(0, 0);
+// This controller will deactivate all instances in the room
+// bisides itself. This means that all instances dissapear when
+// being deactivated. The screenshot will be taken before that happens.
+// Make sure this controller is in front of everything, even tiles.
 
-with(all) {
-    if(visible) {
-        x -= view_xview[0];
-        y -= view_yview[0];
-        event_perform(ev_draw, 0);
-        x += view_xview[0];
-        y += view_yview[0];
-    }
-}
+game_paused = false;      // If game is paused or not
+deactivated = false;      // Whether or not the instances in the room have been deactivated
+pause_col=make_color_rgb(40,40,40); // Color of the pause screen (darken the screen)
+pause_bg = -1;            // Background to draw on the pause menu
+visible = false
+depth = -10000000000000
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check for pause key pressed / unpause
 
-surface_reset_target();
+if keyboard_check(ord('p'))
+  {
+  show_debug_message("Pressed")
+  // This makes sure we press the pause key once
+  io_clear();
+  // Pause or unpause depending on the visibility of the controller
+  if (visible = false) {visible = true;game_paused = true;} else {game_paused = false;}
+  }
+
+if (visible = false) {exit;}
+
+// Reactivate all instances and unpause
+if (game_paused = false &amp;&amp; deactivated = true)
+  {
+  // Remove background data from memory
+  if (background_exists(pause_bg) = true) {background_delete(pause_bg);}
+  // Reactivate all objects
+  instance_activate_all();
+  deactivated = false;
+  // Hide pause screen
+  visible = false;
+  }
 </string>
           </argument>
         </arguments>
@@ -64,9 +107,23 @@ surface_reset_target();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (surface_exists(surf)) {
-    draw_surface(surf, view_xview[0], view_yview);
-}
+            <string>// Make sure game is paused
+if (game_paused = true &amp;&amp; visible = true)
+  {
+  // Make sure instances are not yet deactivated to capture screen
+  if (deactivated = false)
+    {
+    // Capture the screen
+    pause_bg = scr_screen_capture();
+    // Deactivate all instances besides this controler
+    instance_deactivate_all(true);
+    deactivated = true;
+    }
+  // Draw our pause screen
+  draw_background_ext(pause_bg,view_xview[0],view_yview[0],1,1,0,pause_col,1); 
+  
+  draw_text_colour((room_width/2)-60,(room_height/2)-30,"PAUSE",c_white,c_white,c_white,c_white,1);
+  }
 </string>
           </argument>
         </arguments>
@@ -89,20 +146,16 @@ surface_reset_target();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//this is for pause
-if(global.pause)
-{
-instance_activate_all()
-global.pause = false
-}
-else
-{
-global.pause = true
-x=0
-y=0
-
-instance_deactivate_all(true)
-}
+            <string>  if (visible = false) 
+  {
+  visible = true;
+  game_paused = true;
+  } 
+  else
+   {
+   game_paused = false;
+   }
+   show_debug_message("Pressed")
 </string>
           </argument>
         </arguments>

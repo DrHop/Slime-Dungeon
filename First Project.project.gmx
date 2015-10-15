@@ -33,6 +33,7 @@
   <scripts name="scripts">
     <script>scripts\scr_enemy_static.gml</script>
     <script>scripts\scr_enemy_follow.gml</script>
+    <script>scripts\scr_screen_capture.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_blob</object>
