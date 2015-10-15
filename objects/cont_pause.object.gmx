@@ -100,7 +100,7 @@ else
 global.pause = true
 x=0
 y=0
-spr_custom = sprite_create_from_screen()
+
 instance_deactivate_all(true)
 }
 </string>
