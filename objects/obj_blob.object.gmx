@@ -55,6 +55,7 @@
             <kind>1</kind>
             <string>image_speed = .5
 hit = false
+//screen shake
 </string>
           </argument>
         </arguments>
